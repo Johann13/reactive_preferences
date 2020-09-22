@@ -11,9 +11,8 @@ dependencies:
     sdk: flutter
   shared_preferences: ^0.5.10
   rxdart: ^0.24.1
-  flutter_async_builder:
-    git:
-      url: git://github.com/Johann13/flutter_async_builder
+  flutter_async_builder: ^0.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
