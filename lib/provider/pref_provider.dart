@@ -7,18 +7,17 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_async_builder/builder/builder_functions.dart';
-import 'package:reactive_preferences/prefs.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:reactive_preferences/prefs/pref.dart';
 
-class PreferenceProvider extends StatelessWidget {
-  final Future<SharedPreferences> sharedPreferences;
+class PreferenceProvider<T extends Pref> extends StatelessWidget {
+  final Future<T> pref;
   final WidgetBuilder loading;
   final ErrorBuilder error;
   final WidgetBuilder builder;
 
   const PreferenceProvider({
     Key key,
-    this.sharedPreferences,
+    this.pref,
     this.loading,
     this.error,
     @required this.builder,
@@ -30,8 +29,8 @@ class PreferenceProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<SharedPreferences>(
-      future: sharedPreferences ?? SharedPreferences.getInstance(),
+    return FutureBuilder<Pref>(
+      future: pref,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           if (error == null) {
@@ -47,7 +46,7 @@ class PreferenceProvider extends StatelessWidget {
           return loading(context);
         } else {
           return _PrefWidget(
-            sharedPreferences: snapshot.data,
+            pref: snapshot.data,
             child: builder(context),
           );
         }
@@ -57,13 +56,13 @@ class PreferenceProvider extends StatelessWidget {
 }
 
 class _PrefWidget extends StatefulWidget {
-  final SharedPreferences sharedPreferences;
+  final Pref pref;
   final Widget child;
 
   const _PrefWidget({
     Key key,
     @required this.child,
-    @required this.sharedPreferences,
+    @required this.pref,
   }) : super(key: key);
 
   @override
@@ -71,13 +70,7 @@ class _PrefWidget extends StatefulWidget {
 }
 
 class __PrefWidgetState extends State<_PrefWidget> {
-  Pref pref;
-
-  @override
-  void initState() {
-    super.initState();
-    pref = Pref(widget.sharedPreferences);
-  }
+  Pref get pref => widget.pref;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +82,7 @@ class __PrefWidgetState extends State<_PrefWidget> {
 
   @override
   void dispose() {
-    pref.dispose();
+    widget.pref.dispose();
     super.dispose();
   }
 }
