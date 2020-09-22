@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_async_builder/builder/simple_stream_builder.dart';
+import 'package:reactive_preferences/provider/shared_preference_provider.dart';
 import 'package:reactive_preferences/reactive_preferences.dart';
 
 void main() {
   runApp(
-    PreferenceProvider(
+    SharedPreferenceProvider(
       builder: (_) => App(),
     ),
   );
@@ -30,15 +32,28 @@ class Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          PreferenceBuilderInt(
+          PreferenceBuilder<int>(
             prefKey: 'count',
             defaultValue: 0,
             builder: (context, value) {
               return Text('value: $value');
             },
           ),
+          PreferenceBuilder(
+            prefKey: 'count',
+            defaultValue: 0,
+            builder: (context, value) {
+              return Text('value: $value');
+            },
+          ),
+          SimpleStreamBuilder<int>(
+            stream: PreferenceProvider.of(context).get<int>('count', 0),
+            builder: (context, value) {
+              return Text('value: $value');
+            },
+          ),
           Divider(),
-          AnimatedPreferenceBuilderInt(
+          AnimatedPreferenceBuilder(
             prefKey: 'count',
             defaultValue: 0,
             duration: Duration(seconds: 3),
@@ -62,10 +77,10 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          PreferenceProvider.of(context).setInt(
-            'count',
-            PreferenceProvider.of(context).getOnceInt('count', 0) + 1,
-          );
+          PreferenceProvider.of(context).set(
+                'count',
+                PreferenceProvider.of(context).getOnce('count', 0) + 1,
+              );
         },
       ),
     );
