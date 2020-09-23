@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:reactive_preferences/preference_builder.dart';
-
-import 'file:///C:/Projekte/reactive_preferences/lib/provider/pref_provider.dart';
+import 'package:reactive_preferences/provider/pref_provider.dart';
 
 class PreferenceCheckbox extends StatelessWidget {
   final String prefKey;
