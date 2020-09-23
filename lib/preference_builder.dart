@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_async_builder/builder/builder_functions.dart';
 import 'package:flutter_async_builder/builder/simple_stream_builder.dart';
-
-import 'file:///C:/Projekte/reactive_preferences/lib/provider/pref_provider.dart';
+import 'package:reactive_preferences/provider/pref_provider.dart';
 
 class PreferenceBuilder<T> extends StatelessWidget {
   final String prefKey;
