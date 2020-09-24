@@ -2,10 +2,6 @@ import 'package:reactive_preferences/prefs/pref.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-
-
 class SharedPreferencePref extends Pref {
   final _BoolPref _boolPref;
   final _IntPref _intPref;
@@ -65,19 +61,19 @@ class SharedPreferencePref extends Pref {
 
   @override
   Stream<List<T>> getMultiple<T>(List<String> key, List<T> defaultValue) {
-    if (defaultValue is bool) {
+    if (defaultValue is List<bool>) {
       return _boolPref.getMultiple(key, defaultValue as List<bool>)
           as Stream<List<T>>;
-    } else if (defaultValue is int) {
+    } else if (defaultValue is List<int>) {
       return _intPref.getMultiple(key, defaultValue as List<int>)
           as Stream<List<T>>;
-    } else if (defaultValue is double) {
+    } else if (defaultValue is List<double>) {
       return _doublePref.getMultiple(key, defaultValue as List<double>)
           as Stream<List<T>>;
-    } else if (defaultValue is String) {
+    } else if (defaultValue is List<String>) {
       return _stringPref.getMultiple(key, defaultValue as List<String>)
           as Stream<List<T>>;
-    } else if (defaultValue is List) {
+    } else if (defaultValue is List<List<String>>) {
       return _listPref.getMultiple(key, defaultValue as List<List<String>>)
           as Stream<List<T>>;
     }
