@@ -1,3 +1,7 @@
+## [0.0.3+2] - Fix lists - 2020-09-24
+
+- Add removeAt method
+
 ## [0.0.3+1] - Fix lists - 2020-09-24
 
 - Add addToList and removeFromList methods.
