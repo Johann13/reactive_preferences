@@ -30,3 +30,4 @@ doc/api/
 .idea/workspace.xml
 .metadata
 .idea/reactive_preferences.iml
+example/ios/Podfile.lock
