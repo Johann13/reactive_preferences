@@ -17,15 +17,15 @@ class SharedPreferencePref extends Pref {
     this._listPref,
   );
 
-  factory SharedPreferencePref(SharedPreferences preferences) {
-    return SharedPreferencePref._(
-      _BoolPref(preferences),
-      _IntPref(preferences),
-      _DoublePref(preferences),
-      _StringPref(preferences),
-      _ListPref(preferences),
-    );
-  }
+  SharedPreferencePref(SharedPreferences preferences)
+      : this._(
+          _BoolPref(preferences),
+          _IntPref(preferences),
+          _DoublePref(preferences),
+          _StringPref(preferences),
+          _ListPref(preferences),
+        );
+
 
   @override
   T getOnce<T>(String key, T defaultValue) {
