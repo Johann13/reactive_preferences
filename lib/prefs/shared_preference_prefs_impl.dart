@@ -96,6 +96,14 @@ class SharedPreferencePref extends Pref {
     return Future.value(false);
   }
 
+  Future<bool> addToList(String key, String value) {
+    return _listPref.addToList(key, value);
+  }
+
+  Future<bool> removeFromList(String key, String value) {
+    return _listPref.addToList(key, value);
+  }
+
   @override
   Future<void> dispose() async {
     await Future.wait([

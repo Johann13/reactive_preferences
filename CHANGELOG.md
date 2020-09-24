@@ -1,3 +1,7 @@
+## [0.0.3+1] - Fix lists - 2020-09-24
+
+- Add addToList and removeFromList methods.
+
 ## [0.0.3] - Fix PreferenceMultiBuilder - 2020-09-24
 
 - Fix PreferenceMultiBuilder
