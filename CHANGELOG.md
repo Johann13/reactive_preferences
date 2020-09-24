@@ -1,3 +1,8 @@
+## [0.0.3] - Fix PreferenceMultiBuilder - 2020-09-24
+
+- Fix PreferenceMultiBuilder
+- Add more small [examples](example/lib/main.dart)
+
 ## [0.0.2] - Prefs refactor - 2020-09-21.
 
 - Refactor Prefs wrapper.
