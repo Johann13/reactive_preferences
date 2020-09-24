@@ -101,7 +101,11 @@ class SharedPreferencePref extends Pref {
   }
 
   Future<bool> removeFromList(String key, String value) {
-    return _listPref.addToList(key, value);
+    return _listPref.removeFromList(key, value);
+  }
+
+  Future<bool> removeAt(String key, int pos) {
+    return _listPref.removeAt(key, pos);
   }
 
   @override
@@ -169,6 +173,12 @@ class _ListPref extends _SharedPreferencePref<List<String>> {
   Future<bool> removeFromList(String key, String value) {
     List<String> list = _preferences.getStringList(key) ?? [];
     list.remove(value);
+    return set(key, list);
+  }
+
+  Future<bool> removeAt(String key, int pos) {
+    List<String> list = _preferences.getStringList(key) ?? [];
+    list.removeAt(pos);
     return set(key, list);
   }
 }
