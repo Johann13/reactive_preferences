@@ -26,7 +26,6 @@ class SharedPreferencePref extends Pref {
           _ListPref(preferences),
         );
 
-
   @override
   T getOnce<T>(String key, T defaultValue) {
     if (defaultValue is bool) {
@@ -194,7 +193,7 @@ abstract class _SharedPreferencePref<T> {
 
   void _init() {
     for (String key in _preferences.getKeys()) {
-      var v = _preferences.get(key);
+      dynamic v = _preferences.get(key);
       if (v is T) {
         _map[key] = BehaviorSubject<T>.seeded(v);
       }
@@ -203,7 +202,8 @@ abstract class _SharedPreferencePref<T> {
 
   void _checkCache(String key, T defaultValue) {
     if (!_map.containsKey(key)) {
-      _map[key] = BehaviorSubject.seeded(_preferences.get(key) ?? defaultValue);
+      _map[key] =
+          BehaviorSubject<T>.seeded(_preferences.get(key) as T ?? defaultValue);
     }
   }
 
@@ -224,7 +224,7 @@ abstract class _SharedPreferencePref<T> {
     }
     return CombineLatestStream.list([
       for (int i = 0; i < keys.length; i++) get(keys[i], defaultValues[i]),
-    ]);
+    ]).asBroadcastStream();
   }
 
   Future<bool> _set(String key, T value);
@@ -242,7 +242,7 @@ abstract class _SharedPreferencePref<T> {
   }
 
   Future<void> dispose() async {
-    await Future.wait(_map.values.map(
+    await Future.wait<dynamic>(_map.values.map(
       (s) => s.close(),
     ));
   }

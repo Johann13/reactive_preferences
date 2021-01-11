@@ -16,9 +16,10 @@ class PreferenceProvider<T extends Pref> extends InheritedWidget {
   })  : assert(child != null),
         super(key: key, child: child);
 
-  static PreferenceProvider of(BuildContext context) {
+  static Pref of(BuildContext context) {
     return context
-        .dependOnInheritedWidgetOfExactType<PreferenceProvider>();
+        .dependOnInheritedWidgetOfExactType<PreferenceProvider>()
+        .pref;
   }
 
   @override
