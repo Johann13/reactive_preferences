@@ -1,6 +1,6 @@
 name: reactive_preferences
 description: Wrapper for shared_preferences which adds the ability to listen to preference changes.
-version: 0.0.3+3
+version: 0.0.4
 homepage: https://github.com/Johann13/reactive_preferences
 
 environment:
@@ -9,10 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^0.5.10
+  shared_preferences: ^0.5.12+4
   rxdart: ^0.24.1
-  flutter_async_builder: #^0.0.2+1
-    path: ../flutter_async_builder
+  flutter_async_builder: ^0.0.2+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
