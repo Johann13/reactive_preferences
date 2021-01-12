@@ -1,3 +1,5 @@
+## [0.0.4+1] - update dependencies
+
 ## [0.0.4] - refactor widgets, update dependencies
 
 ## [0.0.3+3] - Add widgets
