@@ -34,4 +34,11 @@ class SharedPreferenceProvider extends StatelessWidget {
       },
     );
   }
+
+  static SharedPreferencePref of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<
+            PreferenceProvider<SharedPreferencePref>>()
+        .pref;
+  }
 }

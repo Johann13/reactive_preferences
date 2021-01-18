@@ -1,6 +1,6 @@
 name: reactive_preferences
 description: Wrapper for shared_preferences which adds the ability to listen to preference changes.
-version: 0.0.4+1
+version: 0.0.4+2
 homepage: https://github.com/Johann13/reactive_preferences
 
 environment:
