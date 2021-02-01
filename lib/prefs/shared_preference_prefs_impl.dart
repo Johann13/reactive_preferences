@@ -3,6 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencePref extends Pref {
+  final SharedPreferences _preferences;
   final _BoolPref _boolPref;
   final _IntPref _intPref;
   final _DoublePref _doublePref;
@@ -10,6 +11,7 @@ class SharedPreferencePref extends Pref {
   final _ListPref _listPref;
 
   SharedPreferencePref._(
+    this._preferences,
     this._boolPref,
     this._intPref,
     this._doublePref,
@@ -19,6 +21,7 @@ class SharedPreferencePref extends Pref {
 
   SharedPreferencePref(SharedPreferences preferences)
       : this._(
+          preferences,
           _BoolPref(preferences),
           _IntPref(preferences),
           _DoublePref(preferences),
@@ -116,6 +119,20 @@ class SharedPreferencePref extends Pref {
       _stringPref.dispose(),
       _listPref.dispose(),
     ]);
+  }
+
+  @override
+  Future<bool> remove(String key) async {
+    return _preferences.remove(key).then((value) {
+      _boolPref.remove(key);
+      _intPref.remove(key);
+      _doublePref.remove(key);
+      _stringPref.remove(key);
+      _listPref.remove(key);
+      return true;
+    }).catchError(() {
+      return false;
+    });
   }
 }
 
@@ -239,6 +256,11 @@ abstract class _SharedPreferencePref<T> {
       }
     }
     return r;
+  }
+
+  bool remove(String key) {
+    _map.remove(key);
+    return true;
   }
 
   Future<void> dispose() async {

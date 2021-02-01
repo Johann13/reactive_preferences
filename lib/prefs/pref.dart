@@ -7,5 +7,7 @@ abstract class Pref {
 
   Future<bool> set<T>(String key, T value);
 
+  Future<bool> remove(String key);
+
   Future<void> dispose();
 }

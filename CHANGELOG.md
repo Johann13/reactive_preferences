@@ -1,3 +1,5 @@
+## [0.0.4+3] - Add remove preference method
+
 ## [0.0.4+2] - Add SharedPreferenceProvider.of(BuildContext)
 
 ## [0.0.4+1] - update dependencies
