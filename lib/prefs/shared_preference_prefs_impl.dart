@@ -220,18 +220,18 @@ abstract class _SharedPreferencePref<T> {
   void _checkCache(String key, T defaultValue) {
     if (!_map.containsKey(key)) {
       _map[key] =
-          BehaviorSubject<T>.seeded(_preferences.get(key) as T ?? defaultValue);
+          BehaviorSubject<T>.seeded(_preferences.get(key) as T? ?? defaultValue);
     }
   }
 
   T getOnce(String key, T defaultValue) {
     _checkCache(key, defaultValue);
-    return _map[key].value;
+    return _map[key]!.value;
   }
 
   Stream<T> get(String key, T defaultValue) {
     _checkCache(key, defaultValue);
-    return _map[key].asBroadcastStream();
+    return _map[key]!.asBroadcastStream();
   }
 
   Stream<List<T>> getMultiple(List<String> keys, List<T> defaultValues) {
@@ -250,7 +250,7 @@ abstract class _SharedPreferencePref<T> {
     bool r = await _set(key, value);
     if (r) {
       if (_map.containsKey(key)) {
-        _map[key].add(value);
+        _map[key]!.add(value);
       } else {
         _map[key] = BehaviorSubject.seeded(value);
       }

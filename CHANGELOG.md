@@ -1,3 +1,5 @@
+## [0.1.0-nullsafety] - Update to nullsafety
+
 ## [0.0.4+3] - Add remove preference method
 
 ## [0.0.4+2] - Add SharedPreferenceProvider.of(BuildContext)

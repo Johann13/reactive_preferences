@@ -6,19 +6,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:reactive_preferences/prefs/pref.dart';
 
-class PreferenceProvider<T extends Pref> extends InheritedWidget {
+class PreferenceProvider<T extends Pref?> extends InheritedWidget {
   final T pref;
 
   const PreferenceProvider({
-    Key key,
-    @required Widget child,
-    @required this.pref,
-  })  : assert(child != null),
-        super(key: key, child: child);
+    Key? key,
+    required Widget child,
+    required this.pref,
+  }) : super(key: key, child: child);
 
-  static Pref of(BuildContext context) {
+  static Pref? of(BuildContext context) {
     return context
-        .dependOnInheritedWidgetOfExactType<PreferenceProvider>()
+        .dependOnInheritedWidgetOfExactType<PreferenceProvider>()!
         .pref;
   }
 

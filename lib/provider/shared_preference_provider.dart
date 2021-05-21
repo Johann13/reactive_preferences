@@ -5,15 +5,15 @@ import 'package:reactive_preferences/reactive_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceProvider extends StatelessWidget {
-  final WidgetBuilder loading;
-  final ErrorBuilder error;
   final WidgetBuilder builder;
+  final WidgetBuilder? loading;
+  final ErrorBuilder? error;
 
   const SharedPreferenceProvider({
-    Key key,
+    Key? key,
+    required this.builder,
     this.loading,
     this.error,
-    this.builder,
   }) : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class SharedPreferenceProvider extends StatelessWidget {
       loading: loading,
       error: error,
       builder: (context, pref) {
-        return PreferenceProvider<SharedPreferencePref>(
+        return PreferenceProvider<SharedPreferencePref?>(
           pref: pref,
           child: Builder(builder: (context) {
             return builder(context);
@@ -38,7 +38,7 @@ class SharedPreferenceProvider extends StatelessWidget {
   static SharedPreferencePref of(BuildContext context) {
     return context
         .dependOnInheritedWidgetOfExactType<
-            PreferenceProvider<SharedPreferencePref>>()
+            PreferenceProvider<SharedPreferencePref>>()!
         .pref;
   }
 }

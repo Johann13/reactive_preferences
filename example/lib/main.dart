@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
             },
           ),
           SimpleStreamBuilder<int>(
-            stream: PreferenceProvider.of(context).get<int>('count', 0),
+            stream: PreferenceProvider.of(context)!.get<int>('count', 0),
             builder: (context, value) {
               return Text('simple_stream_builder value: $value');
             },
@@ -51,7 +51,7 @@ class Home extends StatelessWidget {
             defaultValue: 0,
             duration: Duration(seconds: 1),
             builder: (context, value) {
-              Color c = value % 2 == 0 ? Colors.white : Colors.black;
+              Color c = value! % 2 == 0 ? Colors.white : Colors.black;
               Color t = value % 2 != 0 ? Colors.white : Colors.black;
               return Container(
                 key: Key('$value'),
@@ -75,7 +75,7 @@ class Home extends StatelessWidget {
                 value: value,
                 subtitle: Text('$value'),
                 onChanged: (v) {
-                  PreferenceProvider.of(context).set('enable', v);
+                  PreferenceProvider.of(context)!.set('enable', v);
                 },
               );
             },
@@ -84,17 +84,18 @@ class Home extends StatelessWidget {
             prefKeys: ['enable', 'enable2'],
             defaultValues: [true, true],
             builder: (_, list) {
-              bool enable = list[0];
+              bool enable = list![0];
               bool value = list[1];
               return SwitchListTile(
                 title: Text('Enable2'),
                 subtitle: Text('$value'),
                 value: value,
-                onChanged: enable?(v) {
-                  PreferenceProvider.of(context).set('enable2', v);
-                }:null,
+                onChanged: enable
+                    ? (v) {
+                        PreferenceProvider.of(context)!.set('enable2', v);
+                      }
+                    : null,
               );
-
             },
           ),
         ],
@@ -102,9 +103,9 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          PreferenceProvider.of(context).set(
+          PreferenceProvider.of(context)!.set(
             'count',
-            PreferenceProvider.of(context).getOnce('count', 0) + 1,
+            PreferenceProvider.of(context)!.getOnce('count', 0) + 1,
           );
         },
       ),

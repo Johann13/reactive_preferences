@@ -7,15 +7,15 @@ import 'package:reactive_preferences/reactive_preferences.dart';
 class PreferenceBuilder<T> extends StatelessWidget {
   final String prefKey;
   final T defaultValue;
-  final DataBuilder<T> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<T?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
 
   const PreferenceBuilder({
-    Key key,
-    @required this.prefKey,
-    @required this.defaultValue,
-    @required this.builder,
+    Key? key,
+    required this.prefKey,
+    required this.defaultValue,
+    required this.builder,
     this.error,
     this.loading,
   }) : super(key: key);
@@ -23,7 +23,7 @@ class PreferenceBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleStreamBuilder<T>(
-      stream: PreferenceProvider.of(context).get(
+      stream: PreferenceProvider.of(context)!.get(
         prefKey,
         defaultValue,
       ),
@@ -37,15 +37,15 @@ class PreferenceBuilder<T> extends StatelessWidget {
 class PreferenceMultiBuilder<T> extends StatelessWidget {
   final List<String> prefKeys;
   final List<T> defaultValues;
-  final DataBuilder<List<T>> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<List<T>?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
 
   const PreferenceMultiBuilder({
-    Key key,
-    @required this.prefKeys,
-    @required this.defaultValues,
-    @required this.builder,
+    Key? key,
+    required this.prefKeys,
+    required this.defaultValues,
+    required this.builder,
     this.error,
     this.loading,
   }) : super(key: key);
@@ -53,7 +53,7 @@ class PreferenceMultiBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SimpleStreamListBuilder<T>(
-      stream: PreferenceProvider.of(context).getMultiple(
+      stream: PreferenceProvider.of(context)!.getMultiple(
         prefKeys,
         defaultValues,
       ),
@@ -67,21 +67,21 @@ class PreferenceMultiBuilder<T> extends StatelessWidget {
 class AnimatedPreferenceBuilder<T> extends StatelessWidget {
   final String prefKey;
   final T defaultValue;
-  final DataBuilder<T> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<T?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration? reverseDuration;
   final Curve switchInCurve;
   final Curve switchOutCurve;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final AnimatedSwitcherLayoutBuilder layoutBuilder;
 
   const AnimatedPreferenceBuilder({
-    Key key,
-    @required this.prefKey,
-    @required this.defaultValue,
-    @required this.builder,
+    Key? key,
+    required this.prefKey,
+    required this.defaultValue,
+    required this.builder,
     this.error,
     this.loading,
     this.duration = const Duration(milliseconds: 300),
@@ -95,7 +95,7 @@ class AnimatedPreferenceBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedStreamBuilder<T>(
-      stream: PreferenceProvider.of(context).get(
+      stream: PreferenceProvider.of(context)!.get(
         prefKey,
         defaultValue,
       ),
@@ -115,21 +115,21 @@ class AnimatedPreferenceBuilder<T> extends StatelessWidget {
 class AnimatedPreferenceMultiBuilder<T> extends StatelessWidget {
   final List<String> prefKeys;
   final List<T> defaultValues;
-  final DataBuilder<List<T>> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<List<T>?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration? reverseDuration;
   final Curve switchInCurve;
   final Curve switchOutCurve;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final AnimatedSwitcherLayoutBuilder layoutBuilder;
 
   const AnimatedPreferenceMultiBuilder({
-    Key key,
-    @required this.prefKeys,
-    @required this.defaultValues,
-    @required this.builder,
+    Key? key,
+    required this.prefKeys,
+    required this.defaultValues,
+    required this.builder,
     this.error,
     this.loading,
     this.duration = const Duration(milliseconds: 300),
@@ -143,7 +143,7 @@ class AnimatedPreferenceMultiBuilder<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedStreamListBuilder<T>(
-      stream: PreferenceProvider.of(context).getMultiple(
+      stream: PreferenceProvider.of(context)!.getMultiple(
         prefKeys,
         defaultValues,
       ),

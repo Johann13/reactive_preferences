@@ -6,15 +6,15 @@ import 'package:reactive_preferences/reactive_preferences.dart';
 class SharedPreferenceBuilder<T> extends StatelessWidget {
   final String prefKey;
   final T defaultValue;
-  final DataBuilder<T> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<T?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
 
   const SharedPreferenceBuilder({
-    Key key,
-    @required this.prefKey,
-    @required this.defaultValue,
-    @required this.builder,
+    Key? key,
+    required this.prefKey,
+    required this.defaultValue,
+    required this.builder,
     this.error,
     this.loading,
   }) : super(key: key);
@@ -36,15 +36,15 @@ class SharedPreferenceBuilder<T> extends StatelessWidget {
 class SharedPreferenceMultiBuilder<T> extends StatelessWidget {
   final List<String> prefKeys;
   final List<T> defaultValues;
-  final DataBuilder<List<T>> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<List<T>?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
 
   const SharedPreferenceMultiBuilder({
-    Key key,
-    @required this.prefKeys,
-    @required this.defaultValues,
-    @required this.builder,
+    Key? key,
+    required this.prefKeys,
+    required this.defaultValues,
+    required this.builder,
     this.error,
     this.loading,
   }) : super(key: key);
@@ -66,21 +66,21 @@ class SharedPreferenceMultiBuilder<T> extends StatelessWidget {
 class AnimatedSharedPreferenceBuilder<T> extends StatelessWidget {
   final String prefKey;
   final T defaultValue;
-  final DataBuilder<T> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<T?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration? reverseDuration;
   final Curve switchInCurve;
   final Curve switchOutCurve;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final AnimatedSwitcherLayoutBuilder layoutBuilder;
 
   const AnimatedSharedPreferenceBuilder({
-    Key key,
-    @required this.prefKey,
-    @required this.defaultValue,
-    @required this.builder,
+    Key? key,
+    required this.prefKey,
+    required this.defaultValue,
+    required this.builder,
     this.error,
     this.loading,
     this.duration = const Duration(milliseconds: 300),
@@ -114,21 +114,21 @@ class AnimatedSharedPreferenceBuilder<T> extends StatelessWidget {
 class AnimatedSharedPreferenceMultiBuilder<T> extends StatelessWidget {
   final List<String> prefKeys;
   final List<T> defaultValues;
-  final DataBuilder<List<T>> builder;
-  final ErrorBuilder error;
-  final WidgetBuilder loading;
+  final DataBuilder<List<T>?> builder;
+  final ErrorBuilder? error;
+  final WidgetBuilder? loading;
   final Duration duration;
-  final Duration reverseDuration;
+  final Duration? reverseDuration;
   final Curve switchInCurve;
   final Curve switchOutCurve;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
   final AnimatedSwitcherLayoutBuilder layoutBuilder;
 
   const AnimatedSharedPreferenceMultiBuilder({
-    Key key,
-    @required this.prefKeys,
-    @required this.defaultValues,
-    @required this.builder,
+    Key? key,
+    required this.prefKeys,
+    required this.defaultValues,
+    required this.builder,
     this.error,
     this.loading,
     this.duration = const Duration(milliseconds: 300),
